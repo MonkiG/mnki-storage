@@ -20,21 +20,21 @@ import { MnkiLocal, MnkiSession } from 'mnki-storage';
 const localStore = new MnkiLocal();
 
 // Store a value in localStorage
-localStore.set('key', 'value');
+localStore.set({key: 'value'});
 
 // Get a value from localStorage
 const value = localStore.get('key');
-console.log(value); // Output: 'value'
+console.log(value); // Output: {key: 'value'}
 
 // Create an instance of MnkiSession to use sessionStorage
 const sessionStore = new MnkiSession();
 
 // Store a value in sessionStorage
-sessionStore.set('key', 'value');
+sessionStore.set({key: 'value'});
 
 // Get a value from sessionStorage
 const value2 = sessionStore.get('key');
-console.log(value2); // Output: 'value'
+console.log(value2); // Output:  {key: 'value'}
 ```
 
 ## Contribution
