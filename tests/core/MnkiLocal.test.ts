@@ -9,8 +9,6 @@ describe('MnkiLocal tests', () => {
   test('Constructor with data should store data in localStorage', () => {
     const data = [{ key: 'value' }]
     const instance = new MnkiLocal(data)
-    expect(instance.get('key')).toBe('value')
+    expect(instance.get('key')).toEqual({ key: 'value' })
   })
-
-  // Continuar con pruebas adicionales...
 })

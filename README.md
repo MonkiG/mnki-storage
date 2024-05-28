@@ -52,5 +52,5 @@ Contributions are welcome! If you want to contribute to this project, follow the
 
 - Publish on NPM: Just as I mentioned before, I would like to publish this package on NPM. However, I'm still in the process of learning how to do it and it will be there soon.
 
--Handle Stardad data structures: Set, Map, WeakSet, WeakMap
+- Handle Standard data structures: Set, Map, WeakSet, WeakMap
 - Add before,after to the set method to get the data that was before or the data setted (this would be optional)

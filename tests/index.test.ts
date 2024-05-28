@@ -3,7 +3,6 @@ import MnkiStorage, { MnkiLocal, MnkiSession } from '../src/index'
 
 describe('Index tests', () => {
   test('MnkiStorage class should be defined', () => {
-    console.log(MnkiStorage)
     expect(MnkiStorage).toBeDefined()
   })
 
