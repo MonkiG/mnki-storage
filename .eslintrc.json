@@ -1,0 +1,19 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends":"standard-with-typescript",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "tsconfig.development.json"
+    },
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off"
+    }, 
+    "ignorePatterns": [
+        "vite-env.d.ts",
+        "vite.config.js"
+    ]
+}
