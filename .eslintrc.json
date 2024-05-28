@@ -10,7 +10,8 @@
         "project": "tsconfig.development.json"
     },
     "rules": {
-        "@typescript-eslint/strict-boolean-expressions": "off"
+        "@typescript-eslint/strict-boolean-expressions": "off", 
+        "@typescript-eslint/no-non-null-assertion": "off"
     }, 
     "ignorePatterns": [
         "vite-env.d.ts",

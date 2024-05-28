@@ -6,9 +6,9 @@ export interface ObjectUtilsInterface {
 }
 
 export interface StorageRepositoryInterface {
-  set: (key: string, value: any) => any
-  get: (key: string) => any
-  remove: (key: strin) => any
+  set: (data: Record<string, any>) => void
+  get: <T extends object>(key: string) => Record<string, T> | null
+  remove: <T extends object>(key: strin) => Record<string, T> | null
 }
 
 export interface MnkiStorageInterface extends ObjectUtilsInterface, StorageRepositoryInterface {
@@ -18,3 +18,10 @@ export interface MnkiStorageInterface extends ObjectUtilsInterface, StorageRepos
   key: (n: number) => string | null
 
 }
+
+export interface DataToStore {
+  key: string
+  data: any
+}
+
+export type dataToStore = Record<string, any> | Array<Record<string, any>> | DataToStore
