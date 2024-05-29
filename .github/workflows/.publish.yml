@@ -13,8 +13,16 @@ jobs:
               with:
                   node-version: 12
                   registry-url: https://registry.npmjs.org
+            - name: install dependencies
+              run: npm install
+              working-directory: src
+            - name: build
+              run: npm run build
+              working-directory: src
+            - name: list dist files
+              run: ls -la src/dist
             - name: publish
               run: npm publish --access public
-              working-directory: mnki-storage
+              working-directory: src/dist
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
