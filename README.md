@@ -37,6 +37,7 @@ const value2 = sessionStore.get('key');
 console.log(value2); // Output:  {key: 'value'}
 
 // Set a complex object with nested data 
+sessionStore.clear()
 const complexObject = {
     key1: 'value1',
     key2: {
@@ -56,6 +57,7 @@ const complexObject = {
     }
 }
 
+sessionStore.set(complexObject)
 console.log(sessionStore.getData())
 
 /*

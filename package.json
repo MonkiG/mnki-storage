@@ -1,7 +1,7 @@
 {
   "name": "@monkig/mnki-storage",
   "private": false,
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A TypeScript library for managing local and session storage with complex data structures.",
   "type": "module",
   "main": "./dist/mnki-storage.es.js",
