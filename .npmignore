@@ -1,0 +1,6 @@
+/src
+/node_modules
+/test
+tsconfig.json
+tsconfig.development.json
+.eslintrc.json

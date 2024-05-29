@@ -14,7 +14,7 @@ This project was created for educational purposes and as my first npm package, w
 ## Basic Usage
 
 ```javascript
-import { MnkiLocal, MnkiSession } from 'mnki-storage';
+import { MnkiLocal, MnkiSession } from '@monkig/mnki-storage';
 
 // Create an instance of MnkiLocal to use localStorage
 const localStore = new MnkiLocal();
@@ -50,7 +50,7 @@ Contributions are welcome! If you want to contribute to this project, follow the
 
 ## Todo
 
-- Publish on NPM: Just as I mentioned before, I would like to publish this package on NPM. However, I'm still in the process of learning how to do it and it will be there soon.
+- Publish on NPM via GitHub Actions
 
 - Handle Standard data structures: Set, Map, WeakSet, WeakMap
 - Add before,after to the set method to get the data that was before or the data setted (this would be optional)

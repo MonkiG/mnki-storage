@@ -1,5 +1,6 @@
+import { MnkiLocal } from './core/MnkiLocal'
 import { MnkiStorage } from './core/MnkiStorage'
+import { MnkiSession } from './core/MnkiSession'
 
 export default MnkiStorage
-export * from './core/MnkiSession'
-export * from './core/MnkiLocal'
+export { MnkiLocal, MnkiSession }
