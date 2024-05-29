@@ -11,18 +11,18 @@ jobs:
             - name: node
               uses: actions/setup-node@v2
               with:
-                  node-version: 12
+                  node-version: 20.11.1
                   registry-url: https://registry.npmjs.org
             - name: install dependencies
               run: npm install
-              working-directory: src
+              working-directory: .
             - name: build
               run: npm run build
-              working-directory: src
+              working-directory: .
             - name: list dist files
               run: ls -la src/dist
             - name: publish
               run: npm publish --access public
-              working-directory: src/dist
+              working-directory: ./dist
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
