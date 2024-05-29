@@ -2,9 +2,9 @@ import BadStructureDataError from '../errors/BadStructureDataError'
 import DataError from '../errors/DataError'
 import StorageError from '../errors/StorageError'
 import StringError from '../errors/StringError'
-import ValueError from '../errors/ValueError'
 import { type dataToStore, type DataToStore, type MnkiStorageInterface } from '../types'
-import { isArray, isDataToStoreType, isInvalidValue, isObject, isStorage, isString } from '../utils/validators'
+import treeTraversal from '../utils/treeTraversal'
+import { isArray, isDataToStoreType, isObject, isStorage, isString } from '../utils/validators'
 
 export class MnkiStorage implements MnkiStorageInterface {
   readonly storage: Storage
@@ -92,16 +92,21 @@ export class MnkiStorage implements MnkiStorageInterface {
     }
 
     if (!isAnArray && isAnDataToStoreType) {
-      this.storage.setItem((data as DataToStore).key, JSON.stringify((data as DataToStore).data))
+      const key = (data as DataToStore).key
+      const value = (data as DataToStore).data
+
+      if (!isString(key)) throw new StringError(key)
+
+      treeTraversal(value)
+      this.storage.setItem(key, JSON.stringify(value))
       return
     }
 
     if (isAnObject && !isAnDataToStoreType) {
       Object.entries(data).forEach(([key, value]) => {
-        if (isInvalidValue(value)) {
-          throw new ValueError(key)
-        }
+        if (!isString(key)) throw new StringError(key)
 
+        treeTraversal({ key: value }) // Recorre el arbol y valida los datos
         this.storage.setItem(key, JSON.stringify(value))
       })
       return
@@ -110,19 +115,19 @@ export class MnkiStorage implements MnkiStorageInterface {
     if (isAnArray) {
       (data as Array<Record<string, any>>).forEach((x) => {
         Object.entries(x).forEach(([key, value]) => {
+          if (!isString(key)) throw new StringError(key)
+
           const isValidDataToStore = isDataToStoreType(x)
 
           if (Object.keys(x).length > 1 && !Object.hasOwn(x, 'key')) {
             throw new BadStructureDataError()
           }
 
-          if (isInvalidValue(value)) {
-            throw new ValueError(key)
-          }
-
           if (isValidDataToStore) {
+            treeTraversal({ [(x as DataToStore).key]: (x as DataToStore).data })
             this.storage.setItem((x as DataToStore).key, JSON.stringify((x as DataToStore).data))
           } else {
+            treeTraversal({ key: value }) // Recorre el arbol y valida los datos
             this.storage.setItem(key, JSON.stringify(value))
           }
         })
