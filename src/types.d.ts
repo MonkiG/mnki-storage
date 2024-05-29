@@ -7,8 +7,8 @@ export interface ObjectUtilsInterface {
 
 export interface StorageRepositoryInterface {
   set: (data: Record<string, any>) => void
-  get: <T extends object>(key: string) => Record<string, T> | null
-  remove: <T extends object>(key: strin) => Record<string, T> | null
+  get: (key: string) => JSONObject<T> | null
+  remove: (key: string) => JSONObject<T> | null
 }
 
 export interface MnkiStorageInterface extends ObjectUtilsInterface, StorageRepositoryInterface {
@@ -24,4 +24,31 @@ export interface DataToStore {
   data: any
 }
 
-export type dataToStore = Record<string, any> | Array<Record<string, any>> | DataToStore
+type infinity = 'Infinity' | '-Infinity'
+type NaN = 'NaN'
+export type invalidValues =
+undefined |
+bigint |
+symbol |
+/* eslint-disable-next-line @typescript-eslint/ban-types */
+Function |
+(() => any) | (() => Promise<any>) |
+NaN |
+infinity
+
+export type JSONPrimitivesValues = Exclude<
+| string
+| number
+| boolean
+| null, invalidValues>
+
+export interface JSONObject {
+  [key: string]: JSONPrimitivesValues | JSONObject
+}
+
+export type JSONArray = JSONObject[]
+
+export type JSON = JSONObject | JSONArray
+
+export type dataToStoreKind = 'json' | 'keyValue'
+export type dataToStore = JSON | DataToStore

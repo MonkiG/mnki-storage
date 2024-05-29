@@ -137,11 +137,11 @@ describe('isInfinity function', () => {
   })
 
   test('Should return true for "Infinity" as a string', () => {
-    expect(isInfinity('Infinity')).toBe(false)
+    expect(isInfinity('Infinity')).toBe(true)
   })
 
   test('Should return true for "-Infinity" as a string', () => {
-    expect(isInfinity('-Infinity')).toBe(false)
+    expect(isInfinity('-Infinity')).toBe(true)
   })
 
   test('Should return false for a number', () => {

@@ -35,6 +35,53 @@ sessionStore.set({key: 'value'});
 // Get a value from sessionStorage
 const value2 = sessionStore.get('key');
 console.log(value2); // Output:  {key: 'value'}
+
+// Set a complex object with nested data 
+const complexObject = {
+    key1: 'value1',
+    key2: {
+        subKey1: 123,
+        subKey2: ['a', 'b', 'c'],
+        subKey3: {
+            nestedKey: true,
+            nestedArray: [4, 5, 6],
+            deeperNest: {
+            innerKey1: 'innerValue1',
+            innerArray: [
+                { deepInnerKey1: null },
+                { deepInnerKey2: 'deepInnerValue2' }
+            ]
+            }
+        }  
+    }
+}
+
+console.log(sessionStore.getData())
+
+/*
+ Output: 
+    [
+        {
+            key2: {
+                subKey1: 123,
+                subKey2: ['a', 'b', 'c'],
+                subKey3: {
+                    nestedKey: true,
+                    nestedArray: [4, 5, 6],
+                    deeperNest: {
+                    innerKey1: 'innerValue1',
+                    innerArray: [
+                        { deepInnerKey1: null },
+                        { deepInnerKey2: 'deepInnerValue2' }
+                    ]
+                }
+            }  
+        }, 
+        {
+            key1: 'value1'
+        }
+    ]
+*/
 ```
 
 ## Contribution
@@ -51,6 +98,5 @@ Contributions are welcome! If you want to contribute to this project, follow the
 ## Todo
 
 - Publish on NPM via GitHub Actions
-
 - Handle Standard data structures: Set, Map, WeakSet, WeakMap
 - Add before,after to the set method to get the data that was before or the data setted (this would be optional)

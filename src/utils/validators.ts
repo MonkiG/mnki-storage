@@ -7,7 +7,7 @@ export function isInvalidValue (value: any): boolean {
     isFunction(value) ||
     typeof value === 'bigint' ||
     typeof value === 'symbol' ||
-    (typeof value === 'number' && isNaN(value)) ||
+    isNan(value) ||
     isInfinity(value)
   )
 }
@@ -43,12 +43,20 @@ export function isFunction (data: any): boolean {
   return typeof data === 'function' || data instanceof Function || {}.toString.call(data) === '[object Function]'
 }
 
+export function isNan (data: any): boolean {
+  return (
+    (data && data.toString() === 'NaN') ||
+    (typeof data === 'number' && isNaN(data))
+  )
+}
 export function isInfinity (data: any): boolean {
   return (
-    (
+    ((
       data === Infinity ||
       data === -Infinity
     ) &&
-    typeof data === 'number'
+    typeof data === 'number') ||
+    (data && (data.toString() === 'Infinity' ||
+    data.toString() === '-Infinity'))
   )
 }
